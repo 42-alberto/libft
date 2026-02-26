@@ -20,6 +20,13 @@ ft_toupper.c\
 ft_tolower.c\
 ft_strchr.c\
 ft_strrchr.c\
+ft_strncmp.c\
+ft_memchr.c\
+ft_memcmp.c\
+ft_strnstr.c\
+ft_atoi.c\
+ft_calloc.c\
+ft_strdup.c\
 
 OBJ	= $(SRC:.c=.o)
 
@@ -35,7 +42,6 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(LIBC) $(NAME) $(OBJ)
 
-# Regla para los bonus
 bonus: $(OBJ) $(OBJ_BONUS)
 	$(LIBC) $(NAME) $(OBJ) $(OBJ_BONUS)
 
@@ -43,15 +49,12 @@ bonus: $(OBJ) $(OBJ_BONUS)
 %.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
-# Limpieza de archivos temporales
 clean:
 	$(RM) $(OBJ) $(OBJ_BONUS)
 
-# Limpieza total
 fclean: clean
 	$(RM) $(NAME)
 
-# Re-compilación desde cero
 re: fclean all
 
 # Marcamos las reglas como "falsas" para evitar conflictos con archivos reales
