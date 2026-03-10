@@ -3,8 +3,6 @@
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-//ver si hay que gestionar null en las string que se reciben
-
 	size_t	i;
 	size_t	j;
 
@@ -16,7 +14,7 @@ char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 	while (s1[i] && i < n)
 	{
 		j = 0;
-		while (s1[i + j] == s2[j] && s1[i + j] && s2[j] && (i + j) < n)
+		while (s1[i + j] == s2[j] && (i + j) < n)
 		{
 			j++;
 			if (!s2[j])

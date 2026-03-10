@@ -3,17 +3,14 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	char	*s_found;
 	char	c_char;
 
-	s_found = (char *) s;
-	c_char = (char) c;
-	while (*s_found || (c_char == '\0' && !*s_found))
+	c_char = (char)c;
+	while (*s != c_char)
 	{
-		if (*s_found == c_char)
-			return (s_found);
-		s_found++;
+		if (*s == '\0')
+			return (NULL);
+		s++;
 	}
-	return (NULL);
-	// modificar y hacer por puntero
+	return ((char *)s);
 }
