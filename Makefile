@@ -13,6 +13,7 @@ ft_isprint.c\
 ft_strlen.c\
 ft_memset.c\
 ft_bzero.c\
+ft_memcpy.c\
 ft_memmove.c\
 ft_strlcpy.c\
 ft_strlcat.c\
@@ -27,11 +28,28 @@ ft_strnstr.c\
 ft_atoi.c\
 ft_calloc.c\
 ft_strdup.c\
+ft_substr.c\
+ft_strjoin.c\
+ft_strtrim.c\
+ft_putchar_fd.c\
+ft_putstr_fd.c\
+ft_putendl_fd.c\
+ft_putnbr_fd.c\
+ft_strmapi.c\
+ft_striteri.c\
+ft_itoa.c\
+ft_split.c
 
 OBJ	= $(SRC:.c=.o)
 
 # --- PARTE BONUS ---
-SRC_BONUS	= 
+SRC_BONUS	= ft_lstnew.c\
+ft_lstadd_front.c\
+ft_lstsize.c\
+ft_lstlast.c\
+ft_lstadd_back.c\
+ft_lstdelone.c
+
 OBJ_BONUS	= $(SRC_BONUS:.c=.o)
 
 # Regla principal (obligatoria)
@@ -42,15 +60,17 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	$(LIBC) $(NAME) $(OBJ)
 
-bonus: $(OBJ) $(OBJ_BONUS)
-	$(LIBC) $(NAME) $(OBJ) $(OBJ_BONUS)
+bonus: .bonus
 
+.bonus: $(OBJ) $(OBJ_BONUS)
+	$(LIBC) $(NAME) $(OBJ) $(OBJ_BONUS)
+	@touch .bonus
 # Compilación de archivos .c en .o
 %.o: %.c libft.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(OBJ_BONUS)
+	$(RM) $(OBJ) $(OBJ_BONUS) .bonus
 
 fclean: clean
 	$(RM) $(NAME)

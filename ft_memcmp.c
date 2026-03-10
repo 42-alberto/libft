@@ -13,8 +13,6 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	if (n == 0)
 		return (0);
 	while (s1_char[i] == s2_char[i] && i < n - 1)
-	{
 		i++;
-	}
 	return (s1_char[i] - s2_char[i]);
 }

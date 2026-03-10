@@ -3,6 +3,8 @@
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
+//ver si hay que gestionar null en las string que se reciben
+
 	size_t	i;
 	size_t	j;
 
