@@ -12,7 +12,16 @@
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	return (c >= 0 && c <= 127);
+	t_list	*aux;
+
+	if (!lst || !f)
+		return ;
+	while (lst)
+	{
+		aux = lst;
+		lst = lst-> next;
+		f(aux-> content);
+	}
 }

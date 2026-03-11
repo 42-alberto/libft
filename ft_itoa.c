@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*    /\_/\                                               :::      ::::::::   */
+/*   ( o.o )   "Punteros y café,                        :+:      :+:    :+:   */
+/*    > ^ <         todo va a salir bien."            +:+ +:+         +:+     */
+/*   By: Me                                         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 0001/01/01 00:00:01 by Me                #+#    #+#             */
+/*   Updated: 0001/01/01 00:00:02 by Me               ###   ########.fr       */
+/*                                                                        pito*/
+/* ************************************************************************** */
 
 #include "libft.h"
 
-static int	integer_to_str_len(int n)
+static int	integer_len(int n)
 {
 	long	num;
 	int		len;
@@ -27,7 +38,7 @@ char	*ft_itoa(int n)
 	long	n_long;
 	char	*number;
 
-	s_len = integer_to_str_len(n);
+	s_len = integer_len(n);
 	n_long = (long)n;
 	number = (char *)malloc(sizeof(char) * (s_len + 1));
 	if (number == NULL)

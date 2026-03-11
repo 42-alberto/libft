@@ -12,7 +12,27 @@
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	return (c >= 0 && c <= 127);
+	t_list	*new_lst;
+	t_list	*new_node;
+	void	*aux_content;
+
+	new_lst = NULL;
+	if (!lst || !f || !del)
+		return (NULL);
+	while (lst)
+	{
+		aux_content = f(lst-> content);
+		new_node = ft_lstnew(aux_content);
+		if (!new_node)
+		{
+			del(aux_content);
+			ft_lstclear(&new_lst, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new_lst, new_node);
+		lst = lst-> next;
+	}
+	return (new_lst);
 }

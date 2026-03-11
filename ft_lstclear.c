@@ -12,7 +12,16 @@
 
 #include "libft.h"
 
-int	ft_isascii(int c)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	return (c >= 0 && c <= 127);
+	t_list	*aux;
+
+	if (!lst || !del)
+		return ;
+	while (*lst)
+	{
+		aux = (*lst);
+		*lst = (*lst)-> next;
+		ft_lstdelone(aux, del);
+	}
 }
