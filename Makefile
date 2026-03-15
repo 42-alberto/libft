@@ -1,84 +1,97 @@
-NAME	= libft.a
-CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
-LIBC	= ar rcs
-RM		= rm -f
+NAME        = libft.a
+CC          = cc
+CFLAGS      = -Wall -Wextra -Werror -I .
+RM          = rm -rf
 
-# --- PARTE OBLIGATORIA ---
-SRC	= ft_isdigit.c\
-ft_isalpha.c\
-ft_isalnum.c\
-ft_isascii.c\
-ft_isprint.c\
-ft_strlen.c\
-ft_memset.c\
-ft_bzero.c\
-ft_memcpy.c\
-ft_memmove.c\
-ft_strlcpy.c\
-ft_strlcat.c\
-ft_toupper.c\
-ft_tolower.c\
-ft_strchr.c\
-ft_strrchr.c\
-ft_strncmp.c\
-ft_memchr.c\
-ft_memcmp.c\
-ft_strnstr.c\
-ft_atoi.c\
-ft_calloc.c\
-ft_strdup.c\
-ft_substr.c\
-ft_strjoin.c\
-ft_strtrim.c\
-ft_putchar_fd.c\
-ft_putstr_fd.c\
-ft_putendl_fd.c\
-ft_putnbr_fd.c\
-ft_strmapi.c\
-ft_striteri.c\
-ft_itoa.c\
-ft_split.c
+# --- DIRECTORIES ---
+SRC_DIR     = srcs/
+OBJ_DIR     = obj/
+SUBDIRS     = is lst mem put str to
 
-OBJ	= $(SRC:.c=.o)
+# --- SOURCE FILES ---
+IS_SRCS     = ft_isalnum.c \
+ft_isalpha.c \
+              ft_isascii.c \
+              ft_isdigit.c \
+              ft_isprint.c
 
-# --- PARTE BONUS ---
-SRC_BONUS	= ft_lstnew.c\
-ft_lstadd_front.c\
-ft_lstsize.c\
-ft_lstlast.c\
-ft_lstadd_back.c\
-ft_lstdelone.c\
-ft_lstclear.c\
-ft_lstiter.c\
-ft_lstmap.c
+MEM_SRCS    = ft_bzero.c \
+              ft_calloc.c \
+              ft_memchr.c \
+              ft_memcmp.c \
+              ft_memcpy.c \
+              ft_memmove.c \
+              ft_memset.c
 
-OBJ_BONUS	= $(SRC_BONUS:.c=.o)
+PUT_SRCS    = ft_putchar_fd.c \
+              ft_putendl_fd.c \
+              ft_putnbr_fd.c \
+              ft_putstr_fd.c
 
-# Regla principal (obligatoria)
+STR_SRCS    = ft_split.c \
+              ft_strchr.c \
+              ft_strdup.c \
+              ft_striteri.c \
+              ft_strjoin.c \
+              ft_strlcat.c \
+              ft_strlcpy.c \
+              ft_strlen.c \
+              ft_strmapi.c \
+              ft_strncmp.c \
+              ft_strnstr.c \
+              ft_strrchr.c \
+              ft_substr.c \
+              ft_strtrim.c
+
+TO_SRCS     = ft_atoi.c \
+              ft_itoa.c \
+              ft_tolower.c \
+              ft_toupper.c
+
+LST_SRCS    = ft_lstadd_back.c \
+              ft_lstadd_front.c \
+              ft_lstclear.c \
+              ft_lstdelone.c \
+              ft_lstiter.c \
+              ft_lstlast.c \
+              ft_lstmap.c \
+              ft_lstnew.c \
+              ft_lstsize.c
+
+# --- PATHS & OBJECTS ---
+VPATH       = $(addprefix $(SRC_DIR), $(SUBDIRS))
+
+SRCS        = $(IS_SRCS) $(MEM_SRCS) $(PUT_SRCS) $(STR_SRCS) $(TO_SRCS)
+OBJS        = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
+BONUS_OBJS  = $(addprefix $(OBJ_DIR), $(LST_SRCS:.c=.o))
+
+# --- RULES ---
+
 all: $(NAME)
 
-# Compila la librería uniendo los objetos
-# Usamos el condicional para evitar el relink
-$(NAME): $(OBJ)
-	$(LIBC) $(NAME) $(OBJ)
+$(NAME): $(OBJS)
+	@ar rcs $(NAME) $(OBJS)
+	@echo "✓ Libft compiled"
 
 bonus: .bonus
 
-.bonus: $(OBJ) $(OBJ_BONUS)
-	$(LIBC) $(NAME) $(OBJ) $(OBJ_BONUS)
+.bonus: $(OBJS) $(BONUS_OBJS)
+	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
 	@touch .bonus
-# Compilación de archivos .c en .o
-%.o: %.c libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
+	@echo "✓ Libft with Bonus compiled"
+
+$(OBJ_DIR)%.o: %.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJ) $(OBJ_BONUS) .bonus
+	@$(RM) $(OBJ_DIR) .bonus
+	@echo "✗ Libft objects removed"
 
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
+	@echo "✗ libft.a removed"
 
 re: fclean all
 
-# Marcamos las reglas como "falsas" para evitar conflictos con archivos reales
-.PHONY: all bonus clean fclean re
+.PHONY: all clean fclean re bonusclear

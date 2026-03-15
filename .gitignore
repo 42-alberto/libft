@@ -1,6 +1,20 @@
-*.o
+# --- Compiled Files ---
 *.a
-*.pdf
-a.out
+*.o
+obj/
+.bonus
+
+# --- Temporary Files ---
 *.swp
+*.swo
+*~
+.vscode/
 .DS_Store
+
+# --- Documentation (DO NOT PUBLISH) ---
+subjects/
+*.pdf
+
+# --- Tests ---
+a.out
+test/
