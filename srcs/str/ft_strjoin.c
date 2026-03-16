@@ -33,3 +33,18 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcat (dst_s1s2, s2, dsts1s2_len + 1);
 	return (dst_s1s2);
 }
+/*
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*dst_s1s2;
+
+	if (!s1 || !s2 || (((size_t) - 1) - ft_strlen(s1) - 1 < ft_strlen(s2)))
+		return (NULL);
+	dst_s1s2 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (dst_s1s2 == NULL)
+		return (NULL);
+	ft_strlcpy (dst_s1s2, s1, ft_strlen(s1) + ft_strlen(s2) + 1);
+	ft_strlcat (dst_s1s2, s2, ft_strlen(s1) + ft_strlen(s2) + 1);
+	return (dst_s1s2);
+}
+*/

@@ -19,7 +19,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (size > 0 && (nmemb > (size_t)-1 / size))
 		return (NULL);
 	array = malloc(nmemb * size);
-	if (array == NULL)
+	if (!array)
 		return (NULL);
 	if (nmemb == 0 || size == 0)
 		return (array);

@@ -28,6 +28,7 @@ void	ft_putnbr_fd(int n, int fd)
 }
 /*
 //implementation using ft_itoa
+void	ft_putnbr_fd(int n, int fd)
 {
 	char	*n_str;
 

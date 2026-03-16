@@ -21,5 +21,6 @@ char	*ft_strdup(const char *s)
 	s_dup = malloc(s_len + 1);
 	if (s_dup == NULL)
 		return (NULL);
-	return (ft_memmove(s_dup, s, s_len + 1));
+	ft_memcpy(s_dup, s, s_len + 1);
+	return (s_dup);
 }
